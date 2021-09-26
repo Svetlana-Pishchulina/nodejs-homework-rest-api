@@ -1,16 +1,12 @@
 const fs = require('fs/promises')
-// const contacts = require('./contacts.json')
 
 const path = require('path')
 const contactsPath = path.join(__dirname, 'contacts.json')
-// console.log(contactsPath)
 
 const listContacts = async () => {
   const data = await fs.readFile(contactsPath, 'utf-8')
-  // console.table(JSON.parse(data))
   return JSON.parse(data)
 }
-// listContacts()
 
 const getContactById = async (contactId) => {
   const contacts = await listContacts()
@@ -18,10 +14,8 @@ const getContactById = async (contactId) => {
   if (!searchedContact) {
     return null
   }
-  // console.table(searchedContact)
   return searchedContact
 }
-// getContactById(5)
 
 const removeContact = async (contactId) => {
   const contacts = await listContacts()
@@ -30,10 +24,8 @@ const removeContact = async (contactId) => {
     return null
   }
   await fs.writeFile(contactsPath, JSON.stringify(newContactsList))
-  // console.table(newContactsList)
   return true
 }
-// removeContact(3)
 
 const addContact = async ({ name, email, phone }) => {
   const contacts = await listContacts()
@@ -41,10 +33,8 @@ const addContact = async ({ name, email, phone }) => {
   const newUser = { id: newUserId, name, email, phone }
   const newContactsList = [...contacts, newUser]
   await fs.writeFile(contactsPath, JSON.stringify(newContactsList))
-  // console.table(newContactsList)
   return newUser
 }
-// addContact({ name: 'a', email: 'sve@getMaxListeners.com', phone: '02315' })
 
 const updateContact = async (contactId, body) => {
   const contacts = await listContacts()
@@ -55,14 +45,8 @@ const updateContact = async (contactId, body) => {
   const updatedContact = { ...searchedContact, ...body }
   const newContactsList = [...contacts, updatedContact]
   await fs.writeFile(contactsPath, JSON.stringify(newContactsList))
-  // console.table(newContactsList)
   return updatedContact
 }
-// updateContact(11, {
-//   name: 'b',
-//   email: 'sve@getMaxListeners.com',
-//   phone: '02315',
-// })
 
 module.exports = {
   listContacts,
