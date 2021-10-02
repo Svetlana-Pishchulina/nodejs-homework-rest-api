@@ -1,11 +1,6 @@
-const fs = require('fs/promises')
-
-const path = require('path')
-const contactsPath = path.join(__dirname, '../db/contacts.json')
-
+const Contact = require('../db/schemas')
 const listContacts = async () => {
-  const data = await fs.readFile(contactsPath, 'utf-8')
-  return JSON.parse(data)
+  return Contact.find()
 }
 
 module.exports = listContacts

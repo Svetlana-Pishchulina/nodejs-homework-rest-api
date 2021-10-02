@@ -11,3 +11,9 @@ module.exports = {
   removeContact,
   updateContact,
 }
+
+// const productsCtrl = require('./productsCtrl')
+
+// module.exports = {
+//   productsCtrl,
+// }

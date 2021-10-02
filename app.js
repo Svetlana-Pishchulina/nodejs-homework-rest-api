@@ -24,3 +24,12 @@ app.use((err, req, res, next) => {
 })
 
 module.exports = app
+
+// ________________________________
+// const { MongoClient, ObjectID } = require('mongodb')
+
+// require('dotenv').config()
+// const uriDb = process.env.DB_HOST
+// const client = await new MongoClient(uriDb, {
+//   useUnifiedTopology: true,
+// }).connect()

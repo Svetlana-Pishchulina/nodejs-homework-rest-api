@@ -8,7 +8,7 @@ const updateContact = async (req, res, next) => {
   if (error) {
     throw new BadRequest(error.message)
   }
-  const contactId = Number(req.params.contactId)
+  const contactId = req.params.contactId
   const updatedContact = await handlers.updateContact(contactId, req.body)
 
   if (!updatedContact) {

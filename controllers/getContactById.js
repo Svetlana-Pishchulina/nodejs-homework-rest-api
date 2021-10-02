@@ -2,7 +2,7 @@ const handlers = require('../model/index')
 const { NotFound } = require('http-errors')
 
 const getContactById = async (req, res, next) => {
-  const contactId = Number(req.params.contactId)
+  const contactId = req.params.contactId
   const contact = await handlers.getContactById(contactId)
   if (!contact) {
     throw new NotFound(`Contact with id=#${contactId} not found`)
