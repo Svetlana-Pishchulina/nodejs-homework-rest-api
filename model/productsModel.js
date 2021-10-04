@@ -3,13 +3,13 @@ const Schema = mongoose.Schema
 const model = mongoose.model
 const Joi = require('joi')
 
-// const codeRegexp = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
+const codeRegexp = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
 
 const contactShema = new Schema(
   {
     name: {
       type: String,
-      //   required: [true, 'Set name for contact'],
+      required: [true, 'Set name for contact'],
       minlength: 3,
       maxlength: 30,
     },
@@ -18,14 +18,14 @@ const contactShema = new Schema(
     },
     phone: {
       type: String,
-      match: /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/,
+      match: codeRegexp,
     },
     favorite: {
       type: Boolean,
       default: false,
     },
-  }
-  //   { versionKey: false, timestamps: true }
+  },
+  { versionKey: false }
 )
 
 const Contact = model('contacts', contactShema)
@@ -35,9 +35,7 @@ const joiSchemaAddContact = Joi.object({
 
   email: Joi.string().email().required(),
 
-  phone: Joi.string()
-    .pattern(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/)
-    .required(),
+  phone: Joi.string().pattern(codeRegexp).required(),
 
   favorite: Joi.boolean(),
 })
@@ -47,14 +45,9 @@ const joiSchemaUdateContact = Joi.object({
 
   email: Joi.string().email().required().optional(),
 
-  phone: Joi.string()
-    .required()
-    .pattern(/^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/)
-    .optional(),
+  phone: Joi.string().required().pattern(codeRegexp).optional(),
 
   favorite: Joi.boolean(),
 })
 
 module.exports = { Contact, joiSchemaAddContact, joiSchemaUdateContact }
-
-// ___________

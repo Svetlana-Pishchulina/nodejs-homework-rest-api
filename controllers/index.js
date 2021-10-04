@@ -4,6 +4,7 @@ const getContacts = require('./getContacts')
 const removeContact = require('./removeContact')
 const updateContact = require('./updateContact')
 const updateStatus = require('./updateContact')
+
 module.exports = {
   addContact,
   getContacts,
@@ -12,9 +13,3 @@ module.exports = {
   updateContact,
   updateStatus,
 }
-
-// const productsCtrl = require('./productsCtrl')
-
-// module.exports = {
-//   productsCtrl,
-// }

@@ -1,4 +1,3 @@
-// const handlers = require('../model/index')
 const { Contact } = require('../model')
 
 const getContacts = async (req, res, next) => {

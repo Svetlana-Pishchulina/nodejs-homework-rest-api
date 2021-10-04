@@ -1,7 +1,5 @@
-// const handlers = require('../model/index')
 const { NotFound, BadRequest } = require('http-errors')
 const { Contact, joiSchemaUdateContact } = require('../model')
-// const validation = require('../validation/validation')
 
 const updateContact = async (req, res, next) => {
   const { error } = joiSchemaUdateContact.validate(req.body)

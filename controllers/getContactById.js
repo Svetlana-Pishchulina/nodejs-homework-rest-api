@@ -1,4 +1,3 @@
-// const handlers = require('../model/index')
 const { NotFound } = require('http-errors')
 const { Contact } = require('../model')
 
