@@ -43,11 +43,11 @@ const joiSchemaAddContact = Joi.object({
 const joiSchemaUdateContact = Joi.object({
   name: Joi.string().min(3).max(30).optional(),
 
-  email: Joi.string().email().required().optional(),
+  email: Joi.string().email().optional(),
 
-  phone: Joi.string().required().pattern(codeRegexp).optional(),
+  phone: Joi.string().pattern(codeRegexp).optional(),
 
-  favorite: Joi.boolean(),
+  favorite: Joi.boolean().optional(),
 })
 
 module.exports = { Contact, joiSchemaAddContact, joiSchemaUdateContact }
