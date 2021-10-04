@@ -17,10 +17,10 @@
 //   return updatedContact
 // }
 
-const Contact = require('../db/schemas')
-const updateContact = async (contactId, fields) => {
-  return Contact.findByIdAndUpdate({ _id: contactId }, fields, {
-    new: true,
-  })
-}
-module.exports = updateContact
+// const Contact = require('../db/schemas')
+// const updateContact = async (contactId, fields) => {
+//   return Contact.findByIdAndUpdate({ _id: contactId }, fields, {
+//     new: true,
+//   })
+// }
+// module.exports = updateContact

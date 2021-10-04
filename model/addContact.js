@@ -14,8 +14,8 @@
 //   return newUser
 // }
 
-const Contact = require('../db/schemas')
-const addContact = async ({ name, email, phone }) => {
-  return Contact.create({ name, email, phone })
-}
-module.exports = addContact
+// const Contact = require('../db/schemas')
+// const addContact = async ({ name, email, phone }) => {
+//   return Contact.create({ name, email, phone })
+// }
+// module.exports = addContact

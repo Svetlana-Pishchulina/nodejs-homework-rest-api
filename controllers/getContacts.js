@@ -1,7 +1,8 @@
-const handlers = require('../model/index')
+// const handlers = require('../model/index')
+const { Contact } = require('../model')
 
 const getContacts = async (req, res, next) => {
-  const contacts = await handlers.listContacts()
+  const contacts = await Contact.find()
   res.json({
     status: 'success',
     code: 200,

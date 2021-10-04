@@ -15,9 +15,9 @@
 //   return true
 // }
 
-const Contact = require('../db/schemas')
-const removeContact = async (contactId) => {
-  return Contact.findByIdAndRemove({ _id: contactId })
-}
+// const Contact = require('../db/schemas')
+// const removeContact = async (contactId) => {
+//   return Contact.findByIdAndRemove({ _id: contactId })
+// }
 
-module.exports = removeContact
+// module.exports = removeContact

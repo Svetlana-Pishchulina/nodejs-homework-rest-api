@@ -7,7 +7,7 @@ router.get('/', controllerWrapper(ctrl.getContacts))
 
 router.get('/:contactId', controllerWrapper(ctrl.getContactById))
 
-router.patch('/:contactId/favorite', controllerWrapper(ctrl.getContactById))
+router.patch('/:contactId/favorite', controllerWrapper(ctrl.updateStatus))
 
 router.post('/', controllerWrapper(ctrl.addContact))
 

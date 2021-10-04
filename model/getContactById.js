@@ -9,8 +9,8 @@
 //   return searchedContact
 // }
 
-const Contact = require('../db/schemas')
-const getContactById = async (contactId) => {
-  return Contact.findOne({ _id: contactId })
-}
-module.exports = getContactById
+// const Contact = require('../db/schemas')
+// const getContactById = async (contactId) => {
+//   return Contact.findOne({ _id: contactId })
+// }
+// module.exports = getContactById
