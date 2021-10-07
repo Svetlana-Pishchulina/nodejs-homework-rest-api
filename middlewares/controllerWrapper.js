@@ -3,6 +3,9 @@ const controllerWraper = (ctrl) => {
     try {
       await ctrl(req, res, next)
     } catch (err) {
+      if (err.message.includes('Cast to ObjectID failed')) {
+        err.status = 404
+      }
       next(err)
     }
   }

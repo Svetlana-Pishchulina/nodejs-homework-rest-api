@@ -1,15 +1,18 @@
-const handlers = require('../model/index')
 const { NotFound, BadRequest } = require('http-errors')
-const validation = require('../validation/validation')
+const { Contact, joiSchemaUdateContact } = require('../model')
 
 const updateContact = async (req, res, next) => {
-  const { error } = validation.schemaUdateContact.validate(req.body)
+  const { error } = joiSchemaUdateContact.validate(req.body)
 
   if (error) {
     throw new BadRequest(error.message)
   }
-  const contactId = Number(req.params.contactId)
-  const updatedContact = await handlers.updateContact(contactId, req.body)
+  const contactId = req.params.contactId
+  const updatedContact = await Contact.findByIdAndUpdate(
+    { _id: contactId },
+    { ...req.body },
+    { new: true }
+  )
 
   if (!updatedContact) {
     throw new NotFound(`Contact with id=#${contactId} not found`)
