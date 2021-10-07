@@ -3,12 +3,12 @@ const { NotFound, BadRequest } = require('http-errors')
 
 const updateStatus = async (req, res, next) => {
   const { contactId } = req.params
-  const { isFavorite = false } = req.params
-  const { body } = req
-  if (!body) {
+  const { isFavorite = false } = req.body
+  // const { body } = req
+  if (!isFavorite) {
     throw new BadRequest('missing field favorite')
   }
-  const { error } = joiSchemaUdateContact.validate(body)
+  const { error } = joiSchemaUdateContact.validate(isFavorite)
   if (error) {
     throw new BadRequest(error.message)
   }
