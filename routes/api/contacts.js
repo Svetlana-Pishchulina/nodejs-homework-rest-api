@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const ctrl = require('../../controllers')
+const ctrl = require('../../controllers/contacts')
 const { controllerWrapper } = require('../../middlewares')
 
 router.get('/', controllerWrapper(ctrl.getContacts))

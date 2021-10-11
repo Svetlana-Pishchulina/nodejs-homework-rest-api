@@ -1,5 +1,6 @@
 const { NotFound } = require('http-errors')
-const { Contact } = require('../model')
+// const { Contact } = require('../model').productsModel
+const { Contact } = require('../../model').productsModel
 
 const removeContact = async (req, res, next) => {
   const contactId = req.params.contactId

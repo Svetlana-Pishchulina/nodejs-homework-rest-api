@@ -1,5 +1,5 @@
 const { NotFound, BadRequest } = require('http-errors')
-const { Contact, joiSchemaUdateContact } = require('../model')
+const { Contact, joiSchemaUdateContact } = require('../../model').productsModel
 
 const updateContact = async (req, res, next) => {
   const { error } = joiSchemaUdateContact.validate(req.body)

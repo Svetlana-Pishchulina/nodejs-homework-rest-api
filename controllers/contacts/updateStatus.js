@@ -1,4 +1,4 @@
-const { Contact, joiSchemaUdateContact } = require('../model')
+const { Contact, joiSchemaUdateContact } = require('../../model').productsModel
 const { NotFound, BadRequest } = require('http-errors')
 
 const updateStatus = async (req, res, next) => {
