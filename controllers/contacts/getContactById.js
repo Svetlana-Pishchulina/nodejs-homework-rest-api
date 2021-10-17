@@ -1,5 +1,4 @@
 const { NotFound } = require('http-errors')
-// const { Contact } = require('../model').contactsModel
 const { Contact } = require('../../model').contactsModel
 
 const getContactById = async (req, res, next) => {

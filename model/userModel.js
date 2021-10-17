@@ -2,7 +2,6 @@ const { model, Schema } = require('mongoose')
 const Joi = require('joi')
 const bcrypt = require('bcryptjs')
 
-// const {userShema}=require('./shemas')
 const userShema = Schema(
   {
     password: {
@@ -37,15 +36,17 @@ userShema.methods.comparePassword = function (password) {
 }
 const User = model('user', userShema)
 
-// const findeOne = (filter) => {
-//   return User.findeOne(filter)
-// }
-
 const joiSchemaUserRegister = Joi.object({
   password: Joi.string().min(6).required(),
   email: Joi.string().email().required(),
-  // subscription: Joi.string().valid('starter', 'pro', 'business'),
-  // token: Joi.string(),
 })
 
-module.exports = { User, joiSchemaUserRegister }
+const joiSchemaUserUpdate = Joi.object({
+  subscription: Joi.string().valid('starter', 'pro', 'business'),
+})
+
+// const joiSchemaUserUpdate = Joi.object().keys({
+//   subscription: Joi.string().valid('starter', 'pro', 'business'),
+// })
+
+module.exports = { User, joiSchemaUserRegister, joiSchemaUserUpdate }

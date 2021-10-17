@@ -1,14 +1,22 @@
-// const { Contact } = require('../model').contactsModel
 const { Contact } = require('../../model').contactsModel
 
 const getContacts = async (req, res, next) => {
-  const { page = 1, limit = 10 } = req.query
+  const { page = 1, limit = 10, favorite } = req.query
   const skip = Number(page) - 1
   const { _id } = req.user
-  const contacts = await Contact.find({ owner: _id }, '', {
-    skip: skip,
-    limit: Number(limit),
-  })
+  let contacts
+  if (favorite) {
+    contacts = await Contact.find({ owner: _id, favorite: favorite }, '', {
+      skip: skip,
+      limit: Number(limit),
+    })
+  } else {
+    contacts = await Contact.find({ owner: _id }, '', {
+      skip: skip,
+      limit: Number(limit),
+    })
+  }
+
   res.json({
     status: 'success',
     code: 200,

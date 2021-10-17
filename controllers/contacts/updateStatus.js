@@ -5,7 +5,6 @@ const updateStatus = async (req, res, next) => {
   const { _id } = req.user
   const { contactId } = req.params
   const { isFavorite = false } = req.body
-  // const { body } = req
   if (!isFavorite) {
     throw new BadRequest('missing field favorite')
   }
