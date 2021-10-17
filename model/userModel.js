@@ -27,8 +27,13 @@ const userShema = Schema(
   },
   { versionKey: false, timestamps: true }
 )
+
 userShema.methods.setPassword = function (password) {
   this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
+}
+
+userShema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password)
 }
 const User = model('user', userShema)
 
@@ -39,9 +44,8 @@ const User = model('user', userShema)
 const joiSchemaUserRegister = Joi.object({
   password: Joi.string().min(6).required(),
   email: Joi.string().email().required(),
-  subscription: Joi.string(), // enum: ['starter', 'pro', 'business'],
-
-  token: Joi.string(),
+  // subscription: Joi.string().valid('starter', 'pro', 'business'),
+  // token: Joi.string(),
 })
 
 module.exports = { User, joiSchemaUserRegister }

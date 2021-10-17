@@ -1,7 +1,8 @@
-const { Contact, joiSchemaUdateContact } = require('../../model').productsModel
+const { Contact, joiSchemaUdateContact } = require('../../model').contactsModel
 const { NotFound, BadRequest } = require('http-errors')
 
 const updateStatus = async (req, res, next) => {
+  const { _id } = req.user
   const { contactId } = req.params
   const { isFavorite = false } = req.body
   // const { body } = req
@@ -13,7 +14,7 @@ const updateStatus = async (req, res, next) => {
     throw new BadRequest(error.message)
   }
   const result = await Contact.findByIdAndUpdate(
-    { _id: contactId },
+    { _id: contactId, owner: _id },
     { isFavorite },
     { new: true }
   )

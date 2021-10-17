@@ -1,7 +1,8 @@
 const { NotFound, BadRequest } = require('http-errors')
-const { Contact, joiSchemaUdateContact } = require('../../model').productsModel
+const { Contact, joiSchemaUdateContact } = require('../../model').contactsModel
 
 const updateContact = async (req, res, next) => {
+  const { _id } = req.user
   const { error } = joiSchemaUdateContact.validate(req.body)
 
   if (error) {
@@ -9,7 +10,7 @@ const updateContact = async (req, res, next) => {
   }
   const contactId = req.params.contactId
   const updatedContact = await Contact.findByIdAndUpdate(
-    { _id: contactId },
+    { _id: contactId, owner: _id },
     { ...req.body },
     { new: true }
   )

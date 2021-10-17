@@ -10,7 +10,7 @@ const register = async (req, res, next) => {
   const {
     email,
     password,
-    // subscription
+    //  subscription
   } = req.body
   const user = await User.findOne({ email })
   if (user) {
@@ -34,7 +34,7 @@ const register = async (req, res, next) => {
       //   token: '',
       user: {
         email,
-        // subscription,
+        subscription: newUser.subscription,
       },
     },
   })
