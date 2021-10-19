@@ -21,7 +21,7 @@ const authenticate = async (req, res, next) => {
     req.user = user
     next()
   } catch (error) {
-    error.status(401)
+    error.status = 401
     next(error)
   }
 }
