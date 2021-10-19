@@ -24,8 +24,12 @@ const contactShema = new Schema(
       type: Boolean,
       default: false,
     },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: 'user',
+    },
   },
-  { versionKey: false }
+  { versionKey: false, timestamps: true }
 )
 
 const Contact = model('contacts', contactShema)
