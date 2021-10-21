@@ -1,9 +1,15 @@
 const express = require('express')
 const ctrl = require('../../controllers/auth')
-const { controllerWrapper, authenticate } = require('../../middlewares')
+const { controllerWrapper, authenticate, upload } = require('../../middlewares')
 const router = express.Router()
 
 router.patch('/', authenticate, controllerWrapper(ctrl.updateSubscription))
+router.patch(
+  '/avatars',
+  authenticate,
+  upload.single('avatar'),
+  controllerWrapper(ctrl.updateAvatar)
+)
 router.post('/signup', controllerWrapper(ctrl.register))
 router.post('/login', controllerWrapper(ctrl.login))
 router.get('/logout', authenticate, controllerWrapper(ctrl.logout))
