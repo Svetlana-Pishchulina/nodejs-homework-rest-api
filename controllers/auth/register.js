@@ -1,5 +1,6 @@
 const { BadRequest, Conflict } = require('http-errors')
 const { User, joiSchemaUserRegister } = require('../../model').userModel
+const gravatar = require('gravatar')
 
 const register = async (req, res, next) => {
   const error = await joiSchemaUserRegister.validate(req.body).error
@@ -11,8 +12,11 @@ const register = async (req, res, next) => {
   if (user) {
     throw new Conflict('Email in use')
   }
-  const newUser = new User({ email })
+
+  const avatarURL = gravatar.url(email)
+  const newUser = new User({ email, avatarURL })
   newUser.setPassword(password)
+
   await newUser.save()
 
   res.status(201).json({
