@@ -1,6 +1,9 @@
 const { BadRequest, Conflict } = require('http-errors')
-const { User, joiSchemaUserRegister } = require('../../model').userModel
 const gravatar = require('gravatar')
+const { nanoid } = require('nanoid')
+
+const { User, joiSchemaUserRegister } = require('../../model').userModel
+const { sendEmail } = require('../../helpers')
 
 const register = async (req, res, next) => {
   const error = await joiSchemaUserRegister.validate(req.body).error
@@ -14,10 +17,17 @@ const register = async (req, res, next) => {
   }
 
   const avatarURL = gravatar.url(email)
-  const newUser = new User({ email, avatarURL })
+  const verifyToken = nanoid()
+  const newUser = await new User({ email, avatarURL, verifyToken })
   newUser.setPassword(password)
 
   await newUser.save()
+  const mail = {
+    to: email,
+    subject: 'Подтверждение регистрации на сайте',
+    html: `<a target='_blank' href='http://localhost:3000/api/users/verify/${verifyToken}'>Нажмите для подтверждения регистрации на сайте</a>`,
+  }
+  sendEmail(mail)
 
   res.status(201).json({
     status: 'success',

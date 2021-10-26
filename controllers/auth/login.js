@@ -10,8 +10,8 @@ const login = async (req, res) => {
   }
   const { email, password } = req.body
   const user = await User.findOne({ email })
-  if (!user || !user.comparePassword(password)) {
-    throw Unauthorized('Email or password is wrong')
+  if (!user || !user.comparePassword(password) || !user.verify) {
+    throw Unauthorized('Email or password is wrong, or email nor verify')
   }
   const { SECRET_KEY } = process.env
   const payload = { id: user._id }
