@@ -11,6 +11,8 @@ router.patch(
   controllerWrapper(ctrl.updateAvatar)
 )
 router.post('/signup', controllerWrapper(ctrl.register))
+router.get('/verify/:verificationToken', controllerWrapper(ctrl.verify))
+router.post('/verify', controllerWrapper(ctrl.reVerification))
 router.post('/login', controllerWrapper(ctrl.login))
 router.get('/logout', authenticate, controllerWrapper(ctrl.logout))
 router.get('/current', authenticate, controllerWrapper(ctrl.current))
