@@ -10,7 +10,8 @@ const register = async (req, res, next) => {
   if (error) {
     throw new BadRequest(error.message)
   }
-  const { email, password, name } = req.body
+  // const { email, password, name } = req.body
+  const { email, password } = req.body
   const user = await User.findOne({ email })
   if (user) {
     throw new Conflict('Email in use')
@@ -35,7 +36,7 @@ const register = async (req, res, next) => {
     message: 'Register success',
     data: {
       user: {
-        name,
+        // name,
         email,
         subscription: newUser.subscription,
       },
